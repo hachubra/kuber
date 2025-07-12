@@ -89,5 +89,5 @@ alex@ubu04:~$ kubectl get nodes
 NAME    STATUS   ROLES    AGE   VERSION
 ubu04   Ready    <none>   26m   v1.32.3
 ```
-![Screen1](https://github.com/hachubra/ansible2025/blob/MNT-video/img/30.png)
-![Screen2](https://github.com/hachubra/ansible2025/blob/MNT-video/img/30.png)
+![Screen1](https://github.com/hachubra/kuber/blob/master/img/1.png)
+![Screen2](https://github.com/hachubra/kuber/blob/master/img/2.png)
