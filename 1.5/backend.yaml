@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multitool-deployment
+  labels:
+    app: multitool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multitool
+  template:
+    metadata:
+      labels:
+        app: multitool
+    spec:
+      containers:
+      - name: wbitt
+        image: wbitt/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "8080"
+        - name: HTTPS_PORT  # If you want to change the HTTPS port
+          value: "8443"
+        ports:
+        - containerPort: 8080
+        
