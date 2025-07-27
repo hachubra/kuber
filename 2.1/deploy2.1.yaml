@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busy-multi
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busy-multi
+  template:
+    metadata:
+      labels:
+        app: busy-multi
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: ["date >> /output/file.txt; sleep 5"] 
+        volumeMounts:
+        - name: vol1
+          mountPath: /output
+      - name: wbitt
+        image: wbitt/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "8080"
+        - name: HTTPS_PORT 
+          value: "8443"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: vol1
+          mountPath: /input
+      volumes: 
+      - name: vol1  
+        emptyDir: {}
