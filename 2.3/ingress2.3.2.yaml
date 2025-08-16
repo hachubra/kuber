@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+  annotations: 
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls: 
+    - hosts:
+      - ubu04.local
+      secretName: my-app-secret-tls
+  ingressClassName: nginx
+  rules: 
+    - host: ubu04.local
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service: 
+              name: nginx-svc
+              port:
+                number: 8080
