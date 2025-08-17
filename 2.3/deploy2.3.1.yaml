@@ -63,7 +63,7 @@ spec:
           subPath: nginx.conf 
         - name: nginx-config-volume
           mountPath: /usr/share/nginx/html/index.html 
-          subPath: index.html
+          subPath: index.html 
       - name: wbitt
         image: wbitt/network-multitool
       volumes:
