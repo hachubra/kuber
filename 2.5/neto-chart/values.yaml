@@ -1,0 +1,8 @@
+container: 
+  name: nginx
+image:
+  name: nginx
+  tag: latest
+replicas: 3
+service:
+  enabled: true
