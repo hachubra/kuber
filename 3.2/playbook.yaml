@@ -1,0 +1,6 @@
+    # playbook.yml
+    # - name: install
+    - hosts: webservers,databases
+      become: true
+      roles:
+        - githubixx.containerd
