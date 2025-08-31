@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: front-back
+  namespace: app # Optional, defaults to the namespace where applied
+spec:
+  podSelector:
+    matchLabels:
+      app: backend # Selects pods based on labels
+  policyTypes:
+    - Ingress # Applies to incoming traffic
+  ingress: # Rules for incoming traffic
+    - from:
+        - podSelector:
+            matchLabels:
+              app: front # Allow traffic from pods with these labels
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: back-cache
+  namespace: app # Optional, defaults to the namespace where applied
+spec:
+  podSelector:
+    matchLabels:
+      app: cash # Selects pods based on labels
+  policyTypes:
+    - Ingress # Applies to incoming traffic
+  ingress: # Rules for incoming traffic
+    - from:
+        - podSelector:
+            matchLabels:
+              app: back # Allow traffic from pods with these labels
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-policy
+  namespace: app # Optional, defaults to the namespace where applied
+spec:
+  podSelector:
+    matchLabels:
+      app: front # Selects pods based on labels
+  policyTypes:
+    - Ingress # Applies to incoming traffic

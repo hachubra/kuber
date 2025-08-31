@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend  
+  namespace: app
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+      - name: wbitt
+        image: wbitt/network-multitool
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  namespace: app
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: wbitt
+        image: wbitt/network-multitool
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cash
+  namespace: app
+  labels:
+    app: cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cash
+  template:
+    metadata:
+      labels:
+        app: cash
+    spec:
+      containers:
+      - name: wbitt
+        image: wbitt/network-multitool
